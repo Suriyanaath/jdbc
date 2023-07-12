@@ -1,8 +1,9 @@
 import java.sql.*;
 import java.util.*;
-class Queryinsert {
-    public static void Select(int acc_no) throws ClassNotFoundException, SQLException {
-
+class Queryinsert
+    {
+    public static void Select(int acc_no) throws ClassNotFoundException, SQLException
+      {
         String url = "jdbc:mysql://localhost:3306/bank_details";
         String user = "root";
         String pass = "root";
@@ -12,9 +13,10 @@ class Queryinsert {
         ResultSet rs=s.executeQuery("select balance from customer where cus_accNo=" + (""+acc_no));
         while(rs.next()) {
             System.out.println(rs.getInt("balance"));
-        }
+     }
     }
-    public static void updatePhone(int cus_accNo,int cus_contactNo,int cus_pin) throws ClassNotFoundException, SQLException {
+    public static void updatePhone(int cus_accNo,int cus_contactNo,int cus_pin) throws ClassNotFoundException, SQLException
+        {
         String url = "jdbc:mysql://localhost:3306/bank_details";
         String user = "root";
         String pass = "root";
@@ -29,7 +31,8 @@ class Queryinsert {
         Show();
 
     }
-    public static void Show()throws ClassNotFoundException, SQLException{
+    public static void Show()throws ClassNotFoundException, SQLException
+        {
         String url="jdbc:mysql://localhost:3306/bank_details";
         String user ="root";
         String pass = "root";
@@ -38,14 +41,17 @@ class Queryinsert {
         Connection con = DriverManager.getConnection(url,user,pass);
         System.out.println("connection");
         Statement st= con.createStatement();
-
         ResultSet rs =st.executeQuery("select * from customer");
-        while(rs.next()){
+        while(rs.next())
+        {
             System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+ rs.getString(4)+" "+rs.getString(5)+" "+ rs.getString(6)+" "+rs.getString(7)+" "+rs.getString(8)+" "+rs.getString(9));
         }
 
+
+            
     }
-    public static void insert(int cus_accNo,String acc_name,int pin_no,String pan_no,int balance,String address,String acc_type,String bank_name,int phone_no)throws ClassNotFoundException, SQLException{
+    public static void insert(int cus_accNo,String acc_name,int pin_no,String pan_no,int balance,String address,String acc_type,String bank_name,int phone_no)throws ClassNotFoundException, SQLException
+        {
         String url="jdbc:mysql://localhost:3306/bank_details";
         String user ="root";
         String pass = "root";
@@ -55,27 +61,35 @@ class Queryinsert {
         System.out.println("connection");
         Statement st= con.createStatement();
         int row = st.executeUpdate("insert into customer values("+cus_accNo+",'"+acc_name+"',"+pin_no+",'"+pan_no+"',"+balance+",'"+address+"','"+acc_type+"','"+bank_name+"',' "+phone_no+" ')");
-        if(row>0){
+        if(row>0)
+        {
             System.out.println("insert is complete");
         }
-        else {
+        else
+        {
             System.out.println("error");
         }
     }
 }
+
+
 public class JDBC {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Scanner sc= new Scanner(System.in);
-        while(true){
+        while(true)
+        {
             System.out.println("1> See the balance");
             System.out.println("2> update phone & pin ");
             System.out.println("3> insert all element");
             int option=sc.nextInt();
-            if(option==1){
+            if(option==1)
+            {
                 System.out.println("enter the acc_no");
                 int acc_no=sc.nextInt();
                 Queryinsert.Select(acc_no);
-            } else if (option==2) {
+            } 
+            else if (option==2)
+            {
                 System.out.println("enter the acc_no");
                 int acc_no=sc.nextInt();
                 System.out.println("enter the phone no");
@@ -84,7 +98,9 @@ public class JDBC {
                 int pin_no=sc.nextInt();
                 Queryinsert.updatePhone(acc_no,Phone_no,pin_no);
 
-            } else if (option==3) {
+            } 
+            else if (option==3)
+            {
                 System.out.println("enter the acc_no");
                 int acc_no=sc.nextInt();
                 System.out.println("enter the phone no");
@@ -109,7 +125,9 @@ public class JDBC {
                 Queryinsert.insert(acc_no,acc_name, pin_no,pan_no,balance,address,acc_type, bank_name, phone_no);
 
             }
-            else{
+                
+            else
+            {
                 break;
             }
 
